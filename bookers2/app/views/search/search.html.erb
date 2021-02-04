@@ -1,0 +1,58 @@
+<% if @model == 'user' %>
+
+  <h2>Users search for "<%= @content%>"</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>name</th>
+        <th>introduction</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @datas.each do |user| %>
+      <tr>
+        <td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image2.jpg" %></td>
+        <td>
+          <%= link_to user_path(user.id) do %>
+          <%= user.name %>
+          <% end %>
+        </td>
+        <td><%= user.introduction %></td>
+      </tr>
+    <% end %>
+    </tbody>
+
+  </table>
+
+<% else %>
+
+  <h2>Books search for "<%= @content%>"</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Opinion</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @datas.each do |book| %>
+      <tr>
+        <td><%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image2.jpg" %></td>
+        <td>
+          <%= link_to book_path(book.id) do %>
+          <%= book.title %>
+          <% end %>
+        </td>
+        <td><%= book.body %></td>
+      </tr>
+    <% end %>
+    </tbody>
+
+  </table>
+<% end %>
