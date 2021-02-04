@@ -21,6 +21,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book_new = Book.new
     @book_comment = BookComment.new
+    @relationship = @book.user.followings.find_by(follower_id: current_user.id)
   end
 
   def edit
