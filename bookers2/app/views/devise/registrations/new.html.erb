@@ -5,17 +5,29 @@
 
       <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-        
+
         <div class="field">
           <%= f.label :name %><br />
           <%= f.text_field :name, autofocus: true %>
         </div>
-      
+
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
-      
+
+        <div class="field">
+          <%= f.label :postal_code %><br />
+          <%= f.text_field :postal_code, autofocus: true, placeholder: 'postal_code', class: "postal_code", id: "address_zipcode" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :prefecture_code %><br>
+          <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, class: "address" %><br>
+          <%= f.text_field :city, autofocus: true, placeholder: 'ciry', class: "address", id:"address_city" %><br>
+          <%= f.text_field :building, autofocus: true, placeholder: 'building', class: "address", id: "address_street" %>
+        </div>
+
         <div class="field">
           <%= f.label :password %>
           <% if @minimum_password_length %>
@@ -23,7 +35,7 @@
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password" %>
         </div>
-      
+
         <div class="field">
           <%= f.label :password_confirmation %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
