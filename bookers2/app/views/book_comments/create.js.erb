@@ -1,0 +1,4 @@
+$('#comments_area').html("<%= j(render partial: 'book_comments/index', locals: {book: @book, book_comment: @book_comment}) %>")
+$('#error_message').html("<%= j(render partial: 'book_comments/error', locals: {book: @book, book_comment: @book_comment}) %>")
+$('.comment_count').html("コメント数：<%= @book.book_comments.count %>")
+$('textarea').val("")

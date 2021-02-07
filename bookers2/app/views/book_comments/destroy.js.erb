@@ -1,0 +1,4 @@
+alert('本当に消しますか？')
+
+$('#comments_area').html("<%= j(render partial: 'book_comments/index', locals: {book: @book, book_comment: @book_comment}) %>")
+$('.comment_count').html("コメント数：<%= @book.book_comments.count %>")
